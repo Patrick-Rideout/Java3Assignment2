@@ -37,7 +37,7 @@
 <div class="container bg-light text-center">
     <h2>Add Author Details:</h2>
 
-    <form>
+    <form action="" method="post">
         <div class="form-group">
             <label for="firstName"><b>First Name:</b></label>
             <input type="text" class="form-control" id="firstName">
