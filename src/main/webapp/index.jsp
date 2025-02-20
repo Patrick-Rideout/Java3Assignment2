@@ -42,7 +42,6 @@
 </div>
 
 
-<a href="hello-servlet" class="btn btn-success btn-lg btn-block">Hello Servlet</a>
 <br/>
 
 </body>

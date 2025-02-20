@@ -23,6 +23,8 @@ public class BookDatabaseManager {
      * @return A list of books retrieved from the database.
      */
     public List<Book> loadBooks() {
+        DBProperties.isDriverRegistered(System.out);
+
         List<Book> books = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(
@@ -51,6 +53,8 @@ public class BookDatabaseManager {
      * @return A list of authors retrieved from the database.
      */
     public List<Author> loadAuthors() {
+        DBProperties.isDriverRegistered(System.out);
+
         List<Author> authors = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(
@@ -78,6 +82,8 @@ public class BookDatabaseManager {
      * @return A map where the key is an author ID and the value is a list of associated book ISBNs.
      */
     public Map<Integer, List<String>> loadISBN() {
+        DBProperties.isDriverRegistered(System.out);
+
         Map<Integer, List<String>> isbnMap = new HashMap<>();
 
         try (Connection conn = DriverManager.getConnection(

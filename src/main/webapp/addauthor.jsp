@@ -37,21 +37,22 @@
 <div class="container bg-light text-center">
     <h2>Add Author Details:</h2>
 
-    <form action="" method="post">
+    <form action="library-data" method="post">
         <div class="form-group">
             <label for="firstName"><b>First Name:</b></label>
-            <input type="text" class="form-control" id="firstName">
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
         </div>
         <div class="form-group">
             <label for="lastName"><b>Last Name:</b></label>
-            <input type="text" class="form-control" id="lastName">
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
         </div>
-        <input type="submit" value="SUBMIT"/>
 
+        <input type="hidden" id="addId" name="addId" value="author" />
+        <input type="submit" value="SUBMIT"/>
     </form>
+
 </div>
 
-<a href="hello-servlet" class="btn btn-success btn-lg btn-block">Hello Servlet</a>
 <br/>
 
 </body>

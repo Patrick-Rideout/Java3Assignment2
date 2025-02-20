@@ -9,7 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1917876f-0bb6-4f94-8ac2-cf76c94c53c8" name="Changes" comment="JSP user interface created." />
+    <list default="true" id="1917876f-0bb6-4f94-8ac2-cf76c94c53c8" name="Changes" comment="JSP user interface created.">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/JDBC/BookApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mariadb-java-client-3.5.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JDBC/BookDatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JDBC/BookDatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JDBC/DBProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JDBC/DBProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/java3assignment2/LibraryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/java3assignment2/LibraryData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/addauthor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addauthor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/addbook.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addbook.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,27 +53,48 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/pride/Desktop/JavaIII/Java3Assignment2/src/main/webapp",
+    "last_opened_file_path": "C:/Users/pride/Desktop/JavaIII/Java3Assignment2/src/main/java/com/example/java3assignment2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pride\Desktop\JavaIII\Java3Assignment2\src\main\java\com\example\java3assignment2" />
+      <recent name="C:\Users\pride\Desktop\JavaIII\Java3Assignment2\src" />
       <recent name="C:\Users\pride\Desktop\JavaIII\Java3Assignment2\src\main\webapp" />
       <recent name="C:\Users\pride\Desktop\JavaIII\Java3Assignment2\src\main\java\JDBC" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="JDBC" />
       <recent name="com.example.java3assignment2" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.3">
+    <configuration name="BookApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="JDBC.BookApplication" />
+      <module name="Java3Assignment2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JDBC.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 11.0.3" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.3" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
@@ -150,6 +183,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BookApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -161,7 +199,8 @@
       <updated>1739816577471</updated>
       <workItem from="1739816578557" duration="749000" />
       <workItem from="1739817570837" duration="1453000" />
-      <workItem from="1739819208991" duration="9730000" />
+      <workItem from="1739819208991" duration="15939000" />
+      <workItem from="1740067955558" duration="4259000" />
     </task>
     <task id="LOCAL-00001" summary="JSP user interface created.">
       <option name="closed" value="true" />
@@ -179,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739834890292</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="JSP user interface created.">
+      <option name="closed" value="true" />
+      <created>1739855130037</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739855130037</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
