@@ -125,7 +125,7 @@
         </div>
         <div class="form-group">
             <label for="editionNumber"><b>Edition Number:</b></label>
-            <input type="text" class="form-control" id="editionNumber" name="editionNumber" required>
+            <input type="number" class="form-control" id="editionNumber" name="editionNumber" min="1" step="1" required>
         </div>
         <div class="form-group">
             <label for="copyright"><b>Copyright:</b></label>
@@ -144,7 +144,7 @@
 
                         for (Author author : listOfAuthors) {
                             out.println("<option value='" + author.getAuthorID() + "'>"
-                                    + author.getFirstName() + " " + author.getLastName()
+                                    + author.getFirstName() + author.getAuthorID() + " " + author.getLastName()
                                     + "</option>");
                         }
                     } catch (Exception e) {

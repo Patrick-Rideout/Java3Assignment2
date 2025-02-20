@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -78,16 +79,40 @@ public class LibraryData extends HttpServlet {
 
             try {
                 db.addAuthor(firstName, lastName);
+                pwriter.println("<h2>Author added successfully!</h2>");
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
         } else if ("book".equals(addId)) {
+            String isbn = request.getParameter("isbn");
+            String title = request.getParameter("title");
+            Integer editionNumber = Integer.valueOf(request.getParameter("editionNumber"));
+            String copyright = request.getParameter("copyright");
+            String authorListNumber = request.getParameter("authorId");
 
+            List<Integer> authorList = new ArrayList<>();
+
+            System.out.println("ISBN: " + isbn);
+            System.out.println("Title: " + title);
+            System.out.println("Edition Number: " + editionNumber);
+            System.out.println("Copyright: " + copyright);
+            System.out.println("Author List: " + authorListNumber);
+
+
+            authorList.add(Integer.valueOf(authorListNumber));
+
+
+            try {
+                db.addBook(isbn, title, editionNumber, copyright, authorList);
+                pwriter.println("<h2>Book added successfully!</h2>");
+            } catch (Exception e) {
+                e.printStackTrace();
+                pwriter.println("<h2>Error adding book!</h2>");
+            }
         }
 
-        pwriter.println("<h2>Author added successfully!</h2>");
 
 
     }
