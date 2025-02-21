@@ -1,24 +1,20 @@
 package com.example.java3assignment2;
 
+import jakarta.servlet.http.*;
+import java.io.*;
+import java.util.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+
 import JDBC.Author;
 import JDBC.Book;
 import JDBC.BookDatabaseManager;
 import JDBC.Library;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "libraryData", value = "/library-data")
 public class LibraryData extends HttpServlet {
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         String viewId = request.getParameter("viewId");
@@ -64,11 +60,23 @@ public class LibraryData extends HttpServlet {
         out.println("</div>");
 
         if ("book".equals(viewId)) {
-            out.println("<div class='container'><h2>Books:</h2><ul class='list-group'>");
+            out.println("<div class='container'><h2>Books:</h2>");
+            out.println("<table class='table table-striped'>");
+            out.println("<thead><tr><th>ISBN</th><th>Title</th><th>Edition</th><th>Copyright</th><th>Author/s</th></tr></thead>");
+            out.println("<tbody>");
             for (Book book : listOfBooks) {
-                out.println("<li class='list-group-item'>" + book.getTitle() + "</li>");
+                StringBuilder authorNames = new StringBuilder();
+                for (Author author : book.getAuthorList()) {
+                    if (authorNames.length() > 0) {
+                        authorNames.append(", ");
+                    }
+                    authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
+                }
+                out.println("<tr><td>" + book.getIsbn() + "</td><td>" + book.getTitle() + "</td><td>" + book.getEditionNumber() + "</td><td>" + book.getCopyright() + "</td><td>" + authorNames + "</td></tr>");
             }
-            out.println("</ul></div>");
+            out.println("</tbody>");
+            out.println("</table>");
+            out.println("</div>");
         } else if ("author".equals(viewId)) {
             out.println("<div class='container'><h2>Authors:</h2>");
             out.println("<table class='table table-striped'>");
@@ -89,7 +97,7 @@ public class LibraryData extends HttpServlet {
                     bookTitles.append("No books available");
                 }
 
-                out.println("<tr><td>" + author.getAuthorID() + "</td><td>" + author.getFirstName() + "</td><td>" + author.getLastName() + "</td><td>" + bookTitles.toString() + "</td></tr>");
+                out.println("<tr><td>" + author.getAuthorID() + "</td><td>" + author.getFirstName() + "</td><td>" + author.getLastName() + "</td><td>" + bookTitles + "</td></tr>");
             }
 
             out.println("</tbody>");
@@ -108,10 +116,6 @@ public class LibraryData extends HttpServlet {
         PrintWriter pwriter = response.getWriter();
 
         BookDatabaseManager db = new BookDatabaseManager();
-
-        List<Book> listOfBooks = db.loadBooks();
-        List<Author> listOfAuthors = db.loadAuthors();
-        Map<Integer, List<String>> isbnMap = db.loadISBN();
 
         String addId=request.getParameter("addId");
 
