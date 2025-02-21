@@ -3,14 +3,12 @@ package com.example.java3assignment2;
 import JDBC.Author;
 import JDBC.Book;
 import JDBC.BookDatabaseManager;
-import jakarta.servlet.RequestDispatcher;
+import JDBC.Library;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,41 +18,88 @@ import java.util.Map;
 
 @WebServlet(name = "libraryData", value = "/library-data")
 public class LibraryData extends HttpServlet {
-    private String message;
-
-    public void init() {
-        message = "Hello Worldz!";
-    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        String viewId = request.getParameter("viewId");
+        PrintWriter out = response.getWriter();
+
+        BookDatabaseManager db = new BookDatabaseManager();
+
+        List<Book> listOfBooks = new ArrayList<>();
+        List<Author> listOfAuthors = new ArrayList<>();
+        Map<Integer, List<String>> isbnMap = null;
+
+        listOfBooks = db.loadBooks();
+        listOfAuthors = db.loadAuthors();
+        isbnMap = db.loadISBN();
 
 
+        Library library = new Library(listOfBooks, listOfAuthors, isbnMap);
 
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("    <title>HOME</title>");
+        out.println("    <meta charset='utf-8'>");
+        out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
+        out.println("    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css'>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js'></script>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js'></script>");
+        out.println("</head>");
+        out.println("<body class='bg-light'>");
+        out.println("<div class='container text-center'>");
+        out.println("    <h1 class='text-center'><b>Josh Taylor's Library for Orphans</b></h1>");
+        out.println("    <a href='index.jsp' class='nav-link btn btn-primary btn-lg m-2'><b>HOME</b></a>");
+        out.println("    <nav class='navbar navbar-expand-sm justify-content-center'>");
+        out.println("        <ul class='navbar-nav'>");
+        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addbook.jsp'>Add Book</a></li>");
+        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addauthor.jsp'>Add Author</a></li>");
+        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='book'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Books</button></form></li>");
+        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='author'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Authors</button></form></li>");
+        out.println("        </ul>");
+        out.println("    </nav>");
+        out.println("    <br/>");
+        out.println("</div>");
+
+        if ("book".equals(viewId)) {
+            out.println("<div class='container'><h2>Books:</h2><ul class='list-group'>");
+            for (Book book : listOfBooks) {
+                out.println("<li class='list-group-item'>" + book.getTitle() + "</li>");
+            }
+            out.println("</ul></div>");
+        } else if ("author".equals(viewId)) {
+            out.println("<div class='container'><h2>Authors:</h2>");
+            out.println("<table class='table table-striped'>");
+            out.println("<thead><tr><th>Author ID</th><th>First Name</th><th>Last Name</th><th>Books</th></tr></thead>");
+            out.println("<tbody>");
+
+            for (Author author : listOfAuthors) {
+                StringBuilder bookTitles = new StringBuilder();
+                List<Book> books = author.getBookList();
+                if (books != null) {
+                    for (Book book : books) {
+                        if (bookTitles.length() > 0) {
+                            bookTitles.append(", ");
+                        }
+                        bookTitles.append(book.getTitle());
+                    }
+                } else {
+                    bookTitles.append("No books available");
+                }
+
+                out.println("<tr><td>" + author.getAuthorID() + "</td><td>" + author.getFirstName() + "</td><td>" + author.getLastName() + "</td><td>" + bookTitles.toString() + "</td></tr>");
+            }
+
+            out.println("</tbody>");
+            out.println("</table>");
+            out.println("</div>");
+        }
+
+        out.println("</body>");
+        out.println("</html>");
     }
-
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        response.setContentType("text/html");
-//        PrintWriter out = response.getWriter();
-//        BookDatabaseManager db = new BookDatabaseManager();
-//
-//        String view = request.getParameter("view");
-//
-//        if ("books".equals(view)) {
-//            List<String> books = db.getBooksWithAuthors();
-//            out.println("<h2>Book List</h2>");
-//            for (String book : books) {
-//                out.println("<p>" + book + "</p>");
-//            }
-//        } else if ("authors".equals(view)) {
-//            List<String> authors = db.getAuthorsWithBooks();
-//            out.println("<h2>Author List</h2>");
-//            for (String author : authors) {
-//                out.println("<p>" + author + "</p>");
-//            }
-//        }
-//
-//        out.println("<a href='index.jsp'>Return to Home</a>");
-//    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -113,11 +158,7 @@ public class LibraryData extends HttpServlet {
             }
         }
 
-
-
     }
-
-
 
     public void destroy() {
     }
