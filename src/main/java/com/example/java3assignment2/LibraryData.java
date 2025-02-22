@@ -32,31 +32,7 @@ public class LibraryData extends HttpServlet {
 
         Library library = new Library(listOfBooks, listOfAuthors, isbnMap);
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("    <title>HOME</title>");
-        out.println("    <meta charset='utf-8'>");
-        out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
-        out.println("    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css'>");
-        out.println("    <script src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js'></script>");
-        out.println("    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>");
-        out.println("    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js'></script>");
-        out.println("</head>");
-        out.println("<body class='bg-light'>");
-        out.println("<div class='container text-center'>");
-        out.println("    <h1 class='text-center'><b>Josh Taylor's Library for Orphans</b></h1>");
-        out.println("    <a href='index.jsp' class='nav-link btn btn-primary btn-lg m-2'><b>HOME</b></a>");
-        out.println("    <nav class='navbar navbar-expand-sm justify-content-center'>");
-        out.println("        <ul class='navbar-nav'>");
-        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addbook.jsp'>Add Book</a></li>");
-        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addauthor.jsp'>Add Author</a></li>");
-        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='book'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Books</button></form></li>");
-        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='author'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Authors</button></form></li>");
-        out.println("        </ul>");
-        out.println("    </nav>");
-        out.println("    <br/>");
-        out.println("</div>");
+        printHeader(out);
 
         if ("book".equals(viewId)) {
             out.println("<div class='container'><h2>Books:</h2>");
@@ -104,7 +80,7 @@ public class LibraryData extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
-        PrintWriter pwriter = response.getWriter();
+        PrintWriter out = response.getWriter();
 
         BookDatabaseManager db = new BookDatabaseManager();
 
@@ -119,9 +95,13 @@ public class LibraryData extends HttpServlet {
 
             try {
                 db.addAuthor(firstName, lastName);
-                pwriter.println("<h2>Author added successfully!</h2>");
+                printHeader(out);
+                out.println("<h2 class='text-center'>Author added successfully!</h2>");
             } catch (Exception e) {
                 e.printStackTrace();
+                out.println("<h2 class='text-center'>Error adding Author</h2>");
+                out.println("</body>");
+                out.println("</html>");
             }
 
 
@@ -144,14 +124,43 @@ public class LibraryData extends HttpServlet {
 
             try {
                 db.addBook(isbn, title, editionNumber, copyright, authorList);
-                pwriter.println("<h2>Book added successfully!</h2>");
+                printHeader(out);
+                out.println("<h2 class='text-center'>Book added successfully!</h2>");
             } catch (Exception e) {
                 e.printStackTrace();
-                pwriter.println("<h2>Error adding book!</h2>");
+                printHeader(out);
+                out.println("<h2 class='text-center'>Error adding book</h2>");
             }
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
-    public void destroy() {
+    public void printHeader(PrintWriter out) {
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("    <title>HOME</title>");
+        out.println("    <meta charset='utf-8'>");
+        out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
+        out.println("    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css'>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js'></script>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>");
+        out.println("    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js'></script>");
+        out.println("</head>");
+        out.println("<body class='bg-light'>");
+        out.println("<div class='container text-center'>");
+        out.println("    <h1 class='text-center'><b>Josh Taylor's Library for Orphans</b></h1>");
+        out.println("    <a href='index.jsp' class='nav-link btn btn-primary btn-lg m-2'><b>HOME</b></a>");
+        out.println("    <nav class='navbar navbar-expand-sm justify-content-center'>");
+        out.println("        <ul class='navbar-nav'>");
+        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addbook.jsp'>Add Book</a></li>");
+        out.println("            <li class='nav-item'><a class='nav-link btn btn-primary btn-lg m-2' href='addauthor.jsp'>Add Author</a></li>");
+        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='book'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Books</button></form></li>");
+        out.println("            <li class='nav-item'><form action='library-data' method='get'><input type='hidden' name='viewId' value='author'><button class='nav-link btn btn-primary btn-lg m-2' type='submit'>View Authors</button></form></li>");
+        out.println("        </ul>");
+        out.println("    </nav>");
+        out.println("    <br/>");
+        out.println("</div>");
     }
 }

@@ -12,6 +12,9 @@
     <list default="true" id="1917876f-0bb6-4f94-8ac2-cf76c94c53c8" name="Changes" comment="View half done.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/java3assignment2/LibraryData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/java3assignment2/LibraryData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/addauthor.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addauthor.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/addbook.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/addbook.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +194,7 @@
       <workItem from="1739816578557" duration="749000" />
       <workItem from="1739817570837" duration="1453000" />
       <workItem from="1739819208991" duration="15939000" />
-      <workItem from="1740067955558" duration="16797000" />
+      <workItem from="1740067955558" duration="20195000" />
     </task>
     <task id="LOCAL-00001" summary="JSP user interface created.">
       <option name="closed" value="true" />
@@ -241,7 +244,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740172231255</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="View half done.">
+      <option name="closed" value="true" />
+      <created>1740174868873</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740174868873</updated>
+    </task>
+    <task id="LOCAL-00008" summary="View half done.">
+      <option name="closed" value="true" />
+      <created>1740188661885</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740188661885</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

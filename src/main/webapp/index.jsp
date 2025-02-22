@@ -44,10 +44,7 @@
     <h2>Head Librarian:</h2>
     <img src="images/JoshTaylor.png" alt="Librarian" class="img-fluid rounded border border-dark" width="300" height="300">
     <h3>Josh Taylor</h3>
-
 </div>
-
-
 <br/>
 
 </body>

@@ -68,7 +68,6 @@
             <label for="authorId"><b>Author:</b></label>
             <select class="form-control" id="authorId" name="authorId" required>
                 <option value="">-- Select an Author --</option>
-
                 <%
                     try {
                         BookDatabaseManager db = new BookDatabaseManager();
@@ -76,7 +75,7 @@
 
                         for (Author author : listOfAuthors) {
                             out.println("<option value='" + author.getAuthorID() + "'>"
-                                    + author.getFirstName() + author.getAuthorID() + " " + author.getLastName()
+                                    + author.getFirstName() + " " + author.getLastName()
                                     + "</option>");
                         }
                     } catch (Exception e) {
@@ -89,8 +88,6 @@
         <input type="hidden" id="addId" name="addId" value="book" />
         <input type="submit" value="SUBMIT" class="btn btn-success"/>
     </form>
-
-
 </div>
 
 <br/>

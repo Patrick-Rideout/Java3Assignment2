@@ -56,9 +56,7 @@
         <input type="hidden" id="addId" name="addId" value="author" />
         <input type="submit" value="SUBMIT"/>
     </form>
-
 </div>
-
 <br/>
 
 </body>
