@@ -30,7 +30,6 @@ public class LibraryData extends HttpServlet {
         listOfAuthors = db.loadAuthors();
         isbnMap = db.loadISBN();
 
-
         Library library = new Library(listOfBooks, listOfAuthors, isbnMap);
 
         out.println("<!DOCTYPE html>");
@@ -70,7 +69,7 @@ public class LibraryData extends HttpServlet {
                     if (authorNames.length() > 0) {
                         authorNames.append(", ");
                     }
-                    authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
+                    authorNames.append(author.getFirstName() + " " + author.getLastName());
                 }
                 out.println("<tr><td>" + book.getIsbn() + "</td><td>" + book.getTitle() + "</td><td>" + book.getEditionNumber() + "</td><td>" + book.getCopyright() + "</td><td>" + authorNames + "</td></tr>");
             }
@@ -85,26 +84,18 @@ public class LibraryData extends HttpServlet {
 
             for (Author author : listOfAuthors) {
                 StringBuilder bookTitles = new StringBuilder();
-                List<Book> books = author.getBookList();
-                if (books != null) {
-                    for (Book book : books) {
-                        if (bookTitles.length() > 0) {
-                            bookTitles.append(", ");
-                        }
-                        bookTitles.append(book.getTitle());
+                for (Book book : author.getBookList()) {
+                    if (bookTitles.length() > 0) {
+                        bookTitles.append(", ");
                     }
-                } else {
-                    bookTitles.append("No books available");
-                }
-
+                    bookTitles.append(book.getTitle());
+                    }
                 out.println("<tr><td>" + author.getAuthorID() + "</td><td>" + author.getFirstName() + "</td><td>" + author.getLastName() + "</td><td>" + bookTitles + "</td></tr>");
             }
-
             out.println("</tbody>");
             out.println("</table>");
             out.println("</div>");
         }
-
         out.println("</body>");
         out.println("</html>");
     }
@@ -137,7 +128,7 @@ public class LibraryData extends HttpServlet {
         } else if ("book".equals(addId)) {
             String isbn = request.getParameter("isbn");
             String title = request.getParameter("title");
-            Integer editionNumber = Integer.valueOf(request.getParameter("editionNumber"));
+            int editionNumber = Integer.parseInt(request.getParameter("editionNumber"));
             String copyright = request.getParameter("copyright");
             String authorListNumber = request.getParameter("authorId");
 
@@ -149,9 +140,7 @@ public class LibraryData extends HttpServlet {
             System.out.println("Copyright: " + copyright);
             System.out.println("Author List: " + authorListNumber);
 
-
             authorList.add(Integer.valueOf(authorListNumber));
-
 
             try {
                 db.addBook(isbn, title, editionNumber, copyright, authorList);
@@ -161,7 +150,6 @@ public class LibraryData extends HttpServlet {
                 pwriter.println("<h2>Error adding book!</h2>");
             }
         }
-
     }
 
     public void destroy() {
